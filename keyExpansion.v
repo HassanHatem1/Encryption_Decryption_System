@@ -1,11 +1,12 @@
 module keyExpansion #(
     parameter nk=8,parameter nb=4,parameter nr=14
 ) (
-    input [(32*nk)-1:0]key,
+    input [(32*nk)-1:0]in_key,
     output  reg [(32*nb*(nr+1))-1:0]w
 );
 //16#09cf4f3cabf7158828aed2a62b7e1516
 //16#0914dff42d9810a33b6108d71f352c07857d77812b73aef015ca71be603deb10
+
 
     /***/
    
@@ -18,12 +19,25 @@ begin
 end
 endfunction
     /***/
+
+   
+    
+    /**********/
+    wire [(32*nk)-1:0]key;
     reg[31:0] tmp;
     reg[31:0] subword;
     reg[31:0] words[0:nb*(nr+1)-1];
     reg[287:0] keys;
     integer i;
    
+    lsb_msb_handler #(
+        .words_cnt(nk)
+    ) lsb_msb_handler_inst (
+        .in(in_key),
+        .out(key)
+    );
+
+    /**********/
     always  @(key)
     begin 
         keys=key;
