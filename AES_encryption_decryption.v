@@ -15,7 +15,7 @@ force key 16#0c0d0e0f08090a0b0405060700010203
         .nb(nb),
         .nr(nr)
     ) keyExpansion_inst (
-        .key(key),
+        .in_key(key),
         .w(w)
     );
     encryption #(
@@ -23,17 +23,17 @@ force key 16#0c0d0e0f08090a0b0405060700010203
         .nb(nb),
         .nr(nr)
     ) encryption_inst (
-        .msg(msg),
+        .in_msg(msg),
         .w(w),
-        .cipher(cipher)
+        .out_cipher(cipher)
     );
     decryption #(
         .nk(nk),
         .nb(nb),
         .nr(nr)
     ) decryption_inst (
-        .chiper(cipher),
+        .in_chiper(cipher),
         .w(w),
-        .msg(msgout)
+        .out_msg(msgout)
     );
 endmodule

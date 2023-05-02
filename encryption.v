@@ -2,19 +2,36 @@ module encryption #(
     parameter nk=8,parameter nb=4,parameter nr=14
 ) (
     
-    input [8*4*nb-1:0]msg,
+    input [8*4*nb-1:0]in_msg,
     input [(32*nb*(nr+1))-1:0]w,
-    output reg [8*4*nb-1:0]cipher
+    output  [8*4*nb-1:0]out_cipher
 );
 
 `include "mypkg.v"
 
+
+wire [8*4*nb-1:0]msg;
+reg  [8*4*nb-1:0]cipher;
 reg[31:0] words[0:nb*(nr+1)-1];
 reg[31:0] state[0:nb-1];
 reg[31:0] tmp[0:nb-1];
 reg[31:0] constmtrx[0:nb-1];
 integer round;
     
+lsb_msb_handler #(
+    .words_cnt(nb)
+) lsb_msb_handler_inst (
+    .in(in_msg),
+    .out(msg)
+);
+
+lsb_msb_handler #(
+    .words_cnt(nb)
+) lsb_msb_handler_inst2 (
+    .in(cipher),
+    .out(out_cipher)
+);
+
 always @(*)
 begin
     /***Intializing words array**********/

@@ -1,5 +1,5 @@
 module keyExpansion #(
-    parameter nk=8,parameter nb=4,parameter nr=14
+    parameter nk=4,parameter nb=4,parameter nr=10
 ) (
     input [(32*nk)-1:0]in_key,
     output  reg [(32*nb*(nr+1))-1:0]w
@@ -7,7 +7,7 @@ module keyExpansion #(
 //16#09cf4f3cabf7158828aed2a62b7e1516
 //16#0914dff42d9810a33b6108d71f352c07857d77812b73aef015ca71be603deb10
 
-
+//vsim work.keyExpansion
     /***/
    
 `include "mypkg.v"
