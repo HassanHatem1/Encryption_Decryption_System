@@ -1,0 +1,11 @@
+import pkkg::addd;
+module test_code (
+    input [3:0]a,
+    input [3:0]b,
+    output [3:0]c
+);
+    always @(a,b)
+    begin
+        c=addd(a,b);
+    end
+endmodule
