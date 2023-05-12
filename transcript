@@ -1,11 +1,22 @@
 # vsim work.AES_encryption_decryption 
-# Start time: 17:47:08 on May 10,2023
+# Start time: 19:43:03 on May 12,2023
 # Loading work.AES_encryption_decryption
 # Loading work.keyExpansion
 # Loading work.lsb_msb_handler
 # Loading work.encryption
 # Loading work.decryption
+# ** Warning: (vsim-3015) ./AES_encryption_decryption.v(26): [PCDPC] - Port size (1408) does not match connection size (1) for port 'w'. The port definition is at: keyExpansion.v(5).
+#    Time: 0 ps  Iteration: 0  Instance: /AES_encryption_decryption/keyExpansion_inst File: keyExpansion.v
+# ** Warning: (vsim-3015) ./AES_encryption_decryption.v(34): [PCDPC] - Port size (1408) does not match connection size (1) for port 'w'. The port definition is at: encryption.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /AES_encryption_decryption/encryption_inst File: encryption.v
+# ** Warning: (vsim-3015) ./AES_encryption_decryption.v(43): [PCDPC] - Port size (1408) does not match connection size (1) for port 'w'. The port definition is at: decryption.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /AES_encryption_decryption/decryption_inst File: decryption.v
 add wave *
-run 
-# End time: 17:55:24 on May 10,2023, Elapsed time: 0:08:16
-# Errors: 0, Warnings: 0
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: SMS  Hostname: DESKTOP-3DFS7B8  ProcessID: 1232
+#           Attempting to use alternate WLF file "./wlft8mb7we".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft8mb7we
+run
+# End time: 19:43:53 on May 12,2023, Elapsed time: 0:00:50
+# Errors: 0, Warnings: 5
