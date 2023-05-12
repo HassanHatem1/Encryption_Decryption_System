@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Logic_project
-Fri May 12 23:18:19 2023
+Sat May 13 00:14:15 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -36,10 +36,10 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Fri May 12 23:18:19 2023           ;
+; Analysis & Synthesis Status ; Failed - Sat May 13 00:14:15 2023           ;
 ; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name               ; Logic_project                               ;
-; Top-level Entity Name       ; Subnode                                     ;
+; Top-level Entity Name       ; Master                                      ;
 ; Family                      ; Cyclone V                                   ;
 ; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
 ; Total registers             ; N/A until Partition Merge                   ;
@@ -57,7 +57,7 @@ refer to the applicable agreement for further details.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
-; Top-level entity name                                                           ; Subnode            ; Logic_project      ;
+; Top-level entity name                                                           ; Master             ; Logic_project      ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -160,10 +160,12 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri May 12 23:18:04 2023
+    Info: Processing started: Sat May 13 00:13:58 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Logic_project -c Logic_project
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file master.v
+    Info (12023): Found entity 1: Master File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Master.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file subnode.v
     Info (12023): Found entity 1: Subnode File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Subnode.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file test_code.v
@@ -193,8 +195,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file aes_enc
     Info (12023): Found entity 1: AES_encryption_decryption File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/AES_encryption_decryption.v Line: 1
 Error: Quartus Prime Analysis & Synthesis was unsuccessful. 6 errors, 2 warnings
     Error: Peak virtual memory: 4769 megabytes
-    Error: Processing ended: Fri May 12 23:18:19 2023
-    Error: Elapsed time: 00:00:15
-    Error: Total CPU time (on all processors): 00:00:34
+    Error: Processing ended: Sat May 13 00:14:15 2023
+    Error: Elapsed time: 00:00:17
+    Error: Total CPU time (on all processors): 00:00:37
 
 

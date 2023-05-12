@@ -5,15 +5,15 @@ input  Miso ,		//1-bit input from  slave
 //input in_real_key ,		//1-bit input from  slave  
 input Out_clk ,		//1-bit input from clock from  slave  
 input [8*4*nb-1:0]from_Real_msg,		
-input [(32*nb*(nr+1))-1:0]from_Real_key 
+input [(32*nb*(nr+1))-1:0]from_Real_key, 
 //input [(32*nb*(nr+1))-1:0]from_enc_dec_key,        //128-bit input from slave(Enc/dyc)
 //
-input in_clk //needs to be generated
+input in_clk, //needs to be generated
 //
 output reg cs_enc_dec ,           //1-bit output to  slave  
 output reg Mosi ,		//1-bit output to  slave  
 //output reg out_real_key ,		//1-bit output to  slave  
-output reg [8*4*nb-1:0]Out_real_msg,		//generic bit output to slave(Enc/dyc)
+output reg [8*4*nb-1:0]Out_real_msg		//generic bit output to slave(Enc/dyc)
        //generic bit output to slave(Enc/dyc)
 
 
@@ -24,7 +24,7 @@ integer countmsg;
 integer countmsgout_key;
 integer countencdec;
 reg [8*4*nb-1:0]Sipo_Register;
-reg [8*4*nb-1+32*nb*(nr+1)-1:0]Piso_Register;
+reg [8*4*nb+32*nb*(nr+1)-1:0]Piso_Register;
 reg dataready;
 ////////
 always @(from_Real_msg , from_Real_key )
@@ -32,7 +32,7 @@ begin
 Sipo_Register<=0;
 Piso_Register<=0;
 countmsg<=0;
-countmsgout<=8*4*nb-1+32*nb*(nr+1)-1;//might need change 
+countmsgout<=8*4*nb+32*nb*(nr+1)-1;//might need change 
 dataready<=0;
 countencdec<=0;
 end
@@ -57,7 +57,7 @@ end
 end
 //////
 
-assign Piso_Register<={from_Real_msg,from_Real_key};
+assign Piso_Register={from_Real_msg,from_Real_key};
 
 ////
 always @(posedge in_clk)
