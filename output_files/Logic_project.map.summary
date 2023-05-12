@@ -1,7 +1,7 @@
-Analysis & Synthesis Status : Failed - Fri May 05 23:24:09 2023
+Analysis & Synthesis Status : Failed - Fri May 12 23:18:19 2023
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : Logic_project
-Top-level Entity Name : Sipo_Register
+Top-level Entity Name : Subnode
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A until Partition Merge
 Total registers : N/A until Partition Merge

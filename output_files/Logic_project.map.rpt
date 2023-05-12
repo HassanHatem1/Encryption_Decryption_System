@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Logic_project
-Fri May 05 23:24:09 2023
+Fri May 12 23:18:19 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -36,10 +36,10 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Fri May 05 23:24:09 2023           ;
+; Analysis & Synthesis Status ; Failed - Fri May 12 23:18:19 2023           ;
 ; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name               ; Logic_project                               ;
-; Top-level Entity Name       ; Sipo_Register                               ;
+; Top-level Entity Name       ; Subnode                                     ;
 ; Family                      ; Cyclone V                                   ;
 ; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
 ; Total registers             ; N/A until Partition Merge                   ;
@@ -57,7 +57,7 @@ refer to the applicable agreement for further details.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
-; Top-level entity name                                                           ; Sipo_Register      ; Logic_project      ;
+; Top-level entity name                                                           ; Subnode            ; Logic_project      ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -160,19 +160,15 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri May 05 23:23:59 2023
+    Info: Processing started: Fri May 12 23:18:04 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Logic_project -c Logic_project
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file subnode.v
+    Info (12023): Found entity 1: Subnode File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Subnode.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file test_code.v
     Info (12023): Found entity 1: test_code File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/test_code.v Line: 1
-Error (10170): Verilog HDL syntax error at Sipo_Register.v(44) near text: "posedge";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Sipo_Register.v Line: 44
-Error (10170): Verilog HDL syntax error at Sipo_Register.v(49) near text: "else";  expecting "end". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Sipo_Register.v Line: 49
-Error (10170): Verilog HDL syntax error at Sipo_Register.v(49) near text: "posedge";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Sipo_Register.v Line: 49
-Error (10170): Verilog HDL syntax error at Sipo_Register.v(64) near text: "=". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Sipo_Register.v Line: 64
-Error (10170): Verilog HDL syntax error at Sipo_Register.v(64) near text: ")";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Sipo_Register.v Line: 64
-Error (10112): Ignored design unit "Sipo_Register" at Sipo_Register.v(1) due to previous errors File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/Sipo_Register.v Line: 1
-Info (12021): Found 0 design units, including 0 entities, in source file sipo_register.v
+Warning (12019): Can't analyze file -- file Sipo_Register.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file pkkg.v
     Info (12023): Found entity 1: pkkg File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/pkkg.v Line: 1
 Error (10839): Verilog HDL error at mypkg.v(1): declaring global objects is a SystemVerilog feature File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/mypkg.v Line: 1
@@ -195,10 +191,10 @@ Error (10112): Ignored design unit "aes_tb" at AES_tb.v(3) due to previous error
 Info (12021): Found 0 design units, including 0 entities, in source file aes_tb.v
 Info (12021): Found 1 design units, including 1 entities, in source file aes_encryption_decryption.v
     Info (12023): Found entity 1: AES_encryption_decryption File: C:/Users/husse/OneDrive/Desktop/college/junior/semister_2/Logic-2/Project4/Advanced-Encryption-System/AES_encryption_decryption.v Line: 1
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 12 errors, 1 warning
-    Error: Peak virtual memory: 4765 megabytes
-    Error: Processing ended: Fri May 05 23:24:09 2023
-    Error: Elapsed time: 00:00:10
-    Error: Total CPU time (on all processors): 00:00:21
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 6 errors, 2 warnings
+    Error: Peak virtual memory: 4769 megabytes
+    Error: Processing ended: Fri May 12 23:18:19 2023
+    Error: Elapsed time: 00:00:15
+    Error: Total CPU time (on all processors): 00:00:34
 
 
