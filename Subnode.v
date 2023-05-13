@@ -64,9 +64,7 @@ begin
                 countmsgout<=countmsgout-1;
             end
         else
-            begin
                 sdo=1'bZ;
-            end
     end
     else
         begin
