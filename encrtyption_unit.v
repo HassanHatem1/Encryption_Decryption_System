@@ -5,7 +5,6 @@ module encryption_unit #(
     input Mosi,
     input rst,
     input cs_enc,
-    output data_done,
     output Miso
 );
 
@@ -15,7 +14,8 @@ module encryption_unit #(
     wire [8*4*nb-1:0]msgout;
     wire [8*4*nb-1:0]from_enc_dec_msg;
     wire [((32*nk))-1:0]to_enc_dec_key;
-    
+    wire [(32*nb*(nr+1))-1:0]w;
+
     Subnode #(
         .nk(nk),
         .nb(nb),
@@ -28,8 +28,7 @@ module encryption_unit #(
         .to_enc_dec_key(to_enc_dec_key),
         .cs(cs_enc),
         .sdo(Miso),
-        .to_enc_dec_msg(msg),
-        .data_done(data_done)
+        .to_enc_dec_msg(msg)
     );
     encryption #(
         .nk(nk),
