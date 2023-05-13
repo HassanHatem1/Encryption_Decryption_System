@@ -34,13 +34,13 @@ begin
     countkey<=0;
     countmsgout<=8*4*nb-1;
     countencdec<=0;
-    snow<=1;
+    snow<=0;
 end
 
 always @(negedge in_clk)
 begin
 
-    if(!cs && (once || !snow) && !rst)
+    if(!cs && (!snow) && !rst)
     begin
         if(countmsg<=8*4*nb-1)
             begin
