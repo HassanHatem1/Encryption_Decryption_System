@@ -37,7 +37,7 @@ begin
     snow<=1;
 end
 
-always @(negedge in_clk )
+always @(negedge in_clk)
 begin
 
     if(!cs && (once || !snow) && !rst)
@@ -64,7 +64,9 @@ begin
                 countmsgout<=countmsgout-1;
             end
         else
+            begin
                 sdo=1'bZ;
+            end
     end
     else
         begin
