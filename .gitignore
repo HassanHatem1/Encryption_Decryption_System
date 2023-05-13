@@ -5,7 +5,9 @@
 *.qws
 *.wlf
 work
-
+simulation
+incremental_db
+db
 # ignore compilation output of ModelSim
 *.mti
 *.dat
@@ -16,7 +18,11 @@ work
 *.jpg
 *.html
 *.bsf
-
+*.bak
+wlf*.*
+*.inc
+*.qsf
+*.wlf
 # ignore simulation output of ModelSim
 wlf*
 *.wlf
