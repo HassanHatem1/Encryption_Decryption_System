@@ -4,7 +4,7 @@ module decryption_unit #(
     input clk,
     input Mosi,
     input rst,
-    input cs_enc,
+    input cs_dec,
     output Miso
 );
 
@@ -26,7 +26,7 @@ module decryption_unit #(
         .in_clk(clk),
         .from_enc_dec_msg(from_enc_dec_msg),
         .to_enc_dec_key(to_enc_dec_key),
-        .cs(cs_enc),
+        .cs(cs_dec),
         .sdo(Miso),
         .to_enc_dec_msg(msg)
     );
