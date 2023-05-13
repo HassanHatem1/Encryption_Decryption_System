@@ -55,7 +55,7 @@ begin
     out_clk<=in_clk;
 end
 */
-always @(data_done_1,data_done_2)
+always @(*)
 begin
     if(mode_select==0)
         data_done=data_done_1;
