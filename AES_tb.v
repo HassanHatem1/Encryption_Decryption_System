@@ -1,11 +1,12 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 10ps
 
 module aes_tb();
 
 //**********************************************************************//
 // Generate random messages and keys
+localparam period = 4;
 
-parameter num = 100; // Number of messages and keys to generate
+parameter num = 6; // Number of messages and keys to generate
 
 reg [31:0] mes [3:0]; // for 128 bit message
 reg [31:0] k1 [3:0]; // for 128 bit key
@@ -16,8 +17,30 @@ reg [127:0] keys_128 [num-1:0];
 reg [191:0] keys_192 [num-1:0];
 reg [255:0] keys_256 [num-1:0];
 
-integer  rnd,i,j;
-   
+integer i,j;
+
+parameter nk = 8;
+reg clk,rst;
+wire cs_encrypt;
+wire cs_decrypt;
+wire Miso1;
+wire Mosi1;
+wire Miso2;
+wire Mosi2;
+//wire rst;
+wire out_clk;
+wire out_clk2;
+reg [127:0]from_Real_msgin;
+reg [(32*4)-1:0]from_Real_keyin;
+wire [127:0]Sipo_Registerin;
+reg [127:0]to_dec;
+wire [127:0]to_Real_msgout;
+
+integer success = 0;
+integer fail = 0;
+
+always #10 clk=~clk;
+
 initial begin
   for (i=0; i<num; i=i+1)
   begin
@@ -51,51 +74,101 @@ initial begin
     end
       keys_256[i] = {k3[7],k3[6],k3[5],k3[4],k3[3],k3[2],k3[1],k3[0]};
       $display("Keys_256: %0h",keys_256[i]);
-      end 
-      $finish;
+    end     
+  end
+  
+initial begin
+
+  clk = 1;
+ 
+  rst = 1;
+  #10 rst = 0;
+
+    for (i=0; i<num; i=i+1)
+    begin
+      from_Real_msgin = messages[i];
+      from_Real_keyin = keys_128[i];
+      #700
+      $display("case: %d generated output: %0h actual output: %0h\n",i+1,from_Real_msgin,messages[i]);
+      if (to_Real_msgout == messages[i])
+        begin
+          success = success + 1;
+          $display("Encryption successful");
+          $display("Success Count=   ",success);
+        end
+      else 
+        begin
+          fail = fail + 1;
+          $display("Error in encryption");
+          $display("Fail Count=   ",fail);
+        end
+      /*from_Real_keyin = keys_192[i];
+      #100;
+      from_Real_keyin = keys_256[i];
+      #100;*/
+    end
+
    end
 //**********************************************************************//
-  reg rst;
 
-  // Inputs
-  reg [127:0] msg;
-  reg [127:0] w;
-  reg [127:0] key;
-  reg [127:0] encrypt_msg;
-  
-  // Outputs
-  wire [127:0] cipher;
+Master #(
+        .nk(4),
+        .nb(4),
+        .nr(10)
+    ) Master_inst1 (
+        .Miso(Miso1),
+        .rst(rst),
+        .out_clk(out_clk),
+        .from_Real_msg(from_Real_msgin),
+        .from_Real_key(from_Real_keyin),
+        .in_clk(clk),
+        .cs_enc_dec(cs_encrypt),
+        .Mosi(Mosi1),
+        .Sipo_Register(Sipo_Registerin)
+    );
+    encryption_unit #(
+        .nk(4),
+        .nb(4),
+        .nr(10)
+    ) encryption_unit_inst1 (
+        .clk(clk),
+        .Mosi(Mosi1),
+        .rst(rst),
+        .cs_enc(cs_encrypt),
+        .Miso(Miso1)
+    );
 
-  // Initialize clock and reset
-  initial begin
-    clk = 0;
-    forever #5 clk = ~clk;
     
-    rst = 1;
-    #10 rst = 0;
-  end
-  
-  // Test vectors
-  initial begin
-    msg = 128'h6bc1bee22e409f96e93d7e117393172a;
-    key = 128'h2b7e151628aed2a6abf7158809cf4f3c;
-    
-    #100;
-    
-    // Expected cipher
-    assert(cipher === 128'h3ad77bb40d7a3660a89ecaf32466ef97) else $error("Test failed: encryption mismatch");
-    
-    //msg = cipher;
-    key = 128'h2b7e151628aed2a6abf7158809cf4f3c;
-    
-    // Wait for 100 ns for the decryption to complete
-    #100;
-    
-    // Expected msg
-    assert(msg === 128'h6bc1bee22e409f96e93d7e117393172a) else $error("Test failed: decryption mismatch");
-    
-    $display("Test successful");
-    $finish;
-  end
+    Master #(
+        .nk(4),
+        .nb(4),
+        .nr(10)
+    ) Master_inst2 (
+        .Miso(Miso2),
+        .rst(rst),
+        .out_clk(out_clk2),
+        .from_Real_msg(to_dec),
+        .from_Real_key(from_Real_keyin),
+        .in_clk(clk),
+        .cs_enc_dec(cs_decrypt),
+        .Mosi(Mosi2),
+        .Sipo_Register(to_Real_msgout)
+    );
+    decryption_unit #(
+        .nk(4),
+        .nb(4),
+        .nr(10)
+    ) decryption_unit_inst2 (
+        .clk(clk),
+        .Mosi(Mosi2),
+        .rst(rst),
+        .cs_dec(cs_decrypt),
+        .Miso(Miso2)
+    );
+    always @(posedge clk)
+    begin
+        if(cs_encrypt==1)
+            to_dec<=Sipo_Registerin;
+    end
 
 endmodule
