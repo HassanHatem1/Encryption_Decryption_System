@@ -2,7 +2,8 @@ module AES_Wrapper  (
     output led1,
     output led2,
     output led3,
-    input clk
+    input clk,
+    input rst
 );
 wire cs_encrypt;
 wire cs_decrypt;
@@ -10,11 +11,10 @@ wire Miso1;
 wire Mosi1;
 wire Miso2;
 wire Mosi2;
-wire rst;
 wire out_clk;
 wire out_clk2;
-wire [8*4*4-1:0]from_Real_msgin=128'h00112233445566778899aabbccddeeff;
-wire [(32*4)-1:0]from_Real_keyin=128'h000102030405060708090a0b0c0d0e0f;
+reg [8*4*4-1:0]from_Real_msgin=0;
+reg [(32*4)-1:0]from_Real_keyin=0;
 wire [8*4*4-1:0]Sipo_Registerin;
 reg [8*4*4-1:0]to_dec;
 wire [8*4*4-1:0]to_Real_msgout;
@@ -72,10 +72,15 @@ Master #(
         .cs_dec(cs_decrypt),
         .Miso(Miso2)
     );
-    always @(posedge clk)
+    always @(negedge clk)
     begin
-        if(cs_encrypt==1)
-            to_dec<=Sipo_Registerin;
+        if(rst==1) begin
+            from_Real_msgin=128'h00112233445566778899aabbccddeeff;
+            from_Real_keyin=128'h000102030405060708090a0b0c0d0e0f;
+        end
+        else  
+            if(cs_encrypt==1)
+                to_dec<=Sipo_Registerin;
     end
 
 endmodule
