@@ -16,31 +16,13 @@ output reg [((32*nk))-1:0]to_enc_dec_key//generic bit output to slave(Enc/dyc)
 integer countmsg;
 integer countkey;
 integer countmsgout;
-integer countencdec;
 reg [8*4*nb-1:0]Piso_Register;
-reg snow;
-reg once;
 
-always @(rst)
-begin
-    once=1;
-end
-always @(negedge cs)
-begin
-    to_enc_dec_msg<=0;
-    to_enc_dec_key<=0;
-    Piso_Register<=0;
-    countmsg<=0;
-    countkey<=0;
-    countmsgout<=8*4*nb-1;
-    countencdec<=0;
-    snow<=0;
-end
 
 always @(negedge in_clk)
 begin
 
-    if(!cs && (!snow) && !rst)
+    if(!cs && !rst)
     begin
         if(countmsg<=8*4*nb-1)
             begin
@@ -67,10 +49,15 @@ begin
                 sdo=1'bZ;
     end
     else
-        begin
-            snow=0;
-            once=0;
-        end
+    begin
+        to_enc_dec_msg<=0;
+        to_enc_dec_key<=0;
+        Piso_Register<=0;
+        countmsg<=0;
+        countkey<=0;
+        countmsgout<=8*4*nb-1;
+    end
+        
     end
 
 endmodule

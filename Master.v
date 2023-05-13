@@ -22,59 +22,40 @@ reg waitForInput;
 
 
 assign out_clk=in_clk;
-always @(*)
-begin
-    if(cs_enc_dec==1)
-    begin
-        Piso_Register<={from_Real_msg,from_Real_key};
-        //Sipo_in_process=0;
-        //Sipo_Register=0;
-        countmsg<=0;
-        countmsgout<=8*4*nb+(32*nk)-1;
-        waitForInput<=1;
-    end
-end
-
-/*
-always @(negedge rst)
-begin 
-    cs_enc_dec<=0;
-end
-*/
-always @(posedge rst)
-begin
-        Sipo_in_process=0;
-        countmsg<=0;
-        countmsgout<=8*4*nb+(32*nk)-1;
-        waitForInput=1;
-        cs_enc_dec<=1;
-end
 
 
-always @(posedge in_clk)
+always @(posedge in_clk,posedge rst)
 begin
-    if(rst==0)
+    if(rst==1)
+        begin
+            Sipo_in_process=0;
+            cs_enc_dec<=1;
+        end
+    else
     begin
         if(cs_enc_dec==1)
             begin
-                cs_enc_dec<=0;
+                cs_enc_dec=0;
+                Piso_Register<={from_Real_msg,from_Real_key};
+                countmsg<=0;
+                countmsgout<=8*4*nb+(32*nk)-1;
+                waitForInput=1;
             end
         if(countmsgout >=0)
-        begin
-            Mosi<=Piso_Register[countmsgout];
-            countmsgout<=countmsgout-1;
-        end
-    else
-        if(countmsg<=8*4*nb-1)
             begin
-                if(waitForInput==0)
-                    begin
-                        countmsg<=countmsg+1;
-                        Sipo_in_process={Sipo_in_process[8*4*nb-2:0], Miso};
-                    end
-                else
-                    waitForInput=0;
-
+                Mosi<=Piso_Register[countmsgout];
+                countmsgout<=countmsgout-1;
+            end
+        else
+            if(countmsg<=8*4*nb-1)
+                begin
+                    if(waitForInput==0)
+                        begin
+                            countmsg<=countmsg+1;
+                            Sipo_in_process={Sipo_in_process[8*4*nb-2:0], Miso};
+                        end
+                    else
+                        waitForInput=0;
             end
     else 
             begin
