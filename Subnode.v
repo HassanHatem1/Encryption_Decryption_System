@@ -1,14 +1,14 @@
 module Subnode #( 
     parameter nk=8,parameter nb=4,parameter nr=14
 )(
-input sdi ,		//1-bit input from Master World
+input sdi ,		//1-bit input from Master World subnode data in
 //input in_real_key ,		//1-bit input from Master World
 input in_clk ,		//1-bit input from clock from Master World
 input [8*4*nb-1:0]from_enc_dec_msg,		//128-bit input from slave(Enc/dyc)
 //input [((32*nk))-1:0]from_enc_dec_key,        //128-bit input from slave(Enc/dyc)
 input cs ,           //1-bit input from Master World
 input rst,
-output reg sdo ,		//1-bit output to Master World
+output reg sdo ,		//1-bit output to Master World subnode data out
 //output reg out_real_key ,		//1-bit output to Master World
 output reg [8*4*nb-1:0]to_enc_dec_msg,		//generic bit output to slave(Enc/dyc)
 output reg [((32*nk))-1:0]to_enc_dec_key,        //generic bit output to slave(Enc/dyc)

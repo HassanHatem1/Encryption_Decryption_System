@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+/*`timescale 1ns / 1ps
 
 module aes_tb();
 
@@ -62,4 +62,4 @@ module aes_tb();
     $finish;
   end
 
-endmodule
+endmodule*/

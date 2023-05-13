@@ -3,17 +3,15 @@ module Master #(
 )(
 input  Miso ,		//1-bit input from  slave  
 //input in_real_key ,		//1-bit input from  slave    
-input [8*4*nb-1:0]from_Real_msg,		
-input [(32*nk)-1:0]from_Real_key,
-input data_done, 
-//input [((32*nk))-1:0]from_enc_dec_key,        //128-bit input from slave(Enc/dyc)
-//
+input [8*4*nb-1:0]from_Real_msg,	//the message in the computer side	
+input [(32*nk)-1:0]from_Real_key,   //the key in the computer side
+input data_done,                    //strobe from subnode
+
 input in_clk, //needs to be generated
-input rst,
-//
+input rst, //reset
 
 output out_clk ,		//1-bit input from clock from  slave
-output reg cs_enc_dec ,           //1-bit output to  slave  
+output reg cs_enc_dec ,           //1-bit chip select output to  slave  
 output reg Mosi ,		//1-bit output to  slave  
 //output reg out_real_key ,		//1-bit output to  slave  
 output reg [8*4*nb-1:0]Sipo_Register		//generic bit output to slave(Enc/dyc)
