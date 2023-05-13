@@ -37,7 +37,7 @@ begin
     snow<=1;
 end
 
-always @(negedge in_clk )
+always @(negedge in_clk)
 begin
 
     if(!cs && (once || !snow) && !rst)
