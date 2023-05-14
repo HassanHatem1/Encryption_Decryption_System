@@ -1,6 +1,6 @@
-`timescale 1ns / 10ps
+`timescale 1ns / 1ps
 
-module aes_tb();
+module  AES_tb();
 
 //**********************************************************************//
 // Generate random messages and keys
@@ -39,7 +39,7 @@ wire [127:0]to_Real_msgout;
 integer success = 0;
 integer fail = 0;
 
-always #10 clk=~clk;
+always #(period/2) clk=~clk;
 
 initial begin
   for (i=0; i<num; i=i+1)
@@ -75,21 +75,18 @@ initial begin
       keys_256[i] = {k3[7],k3[6],k3[5],k3[4],k3[3],k3[2],k3[1],k3[0]};
       $display("Keys_256: %0h",keys_256[i]);
     end     
-  end
-  
-initial begin
 
   clk = 1;
  
   rst = 1;
-  #10 rst = 0;
+  #(10*period) rst = 0;
 
     for (i=0; i<num; i=i+1)
     begin
       from_Real_msgin = messages[i];
       from_Real_keyin = keys_128[i];
-      #700
-      $display("case: %d generated output: %0h actual output: %0h\n",i+1,from_Real_msgin,messages[i]);
+      #(1600*period)
+      $display("case: %d generated output: %0h actual output: %0h\n",i+1,to_Real_msgout,messages[i]);
       if (to_Real_msgout == messages[i])
         begin
           success = success + 1;

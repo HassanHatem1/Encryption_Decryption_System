@@ -72,6 +72,7 @@ Master #(
         .cs_dec(cs_decrypt),
         .Miso(Miso2)
     );
+	 assign led1=(to_Real_msgout==from_Real_msgin);
     always @(negedge clk)
     begin
         if(rst==1) begin
