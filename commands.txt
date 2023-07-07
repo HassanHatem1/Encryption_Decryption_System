@@ -1,3 +1,0 @@
-vsim work.AES_encryption_decryption -gnk=4 -gnb=4 -gnr=10 -do "add wave *;radix -hexadecimal;force msg 16#00112233445566778899aabbccddeeff;force key 16#000102030405060708090a0b0c0d0e0f;run;"
-vsim work.AES_encryption_decryption -gnk=6 -gnb=4 -gnr=12 -do "add wave *; radix -hexadecimal;force msg 16#00112233445566778899aabbccddeeff;force key 16#000102030405060708090a0b0c0d0e0f1011121314151617;run;"
-vsim work.AES_encryption_decryption -gnk=8 -gnb=4 -gnr=14 -do "add wave *;radix -hexadecimal;force msg 16#00112233445566778899aabbccddeeff;force key 16#000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f;run;"
