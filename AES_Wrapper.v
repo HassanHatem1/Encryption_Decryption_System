@@ -89,11 +89,7 @@ Master #(
         .in_valid(ttt),
         .out_valid(out_valid_dec)
     );
-<<<<<<< HEAD
 	 assign led1=(to_Real_msgout==from_Real_msgin);
-=======
-    
->>>>>>> sequential
     always @(negedge clk)
     begin
         if(cs_encrypt==1 && rst==0)
